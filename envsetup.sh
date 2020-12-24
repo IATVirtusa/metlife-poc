@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd  /home/metlife-backend/deployments/metlife_poc
+cd  /home/metlife-backend/deployments/
 if [ -d "metlife-env" ] 
 then
     echo "Python virtual environment exists." 
