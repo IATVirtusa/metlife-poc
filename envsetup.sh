@@ -9,8 +9,7 @@ else
 fi
 
 source metlife-env/bin/activate
-
-pip3 install bandit
+cd metlife_poc
 pip3 install -r requirements.txt
 
 if [ -d "logs" ] 
