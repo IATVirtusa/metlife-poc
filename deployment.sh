@@ -9,17 +9,12 @@ cd metlife_poc
 sudo systemctl stop metlife-api.service
 sudo systemctl daemon-reload
 
-sudo systemctl start gunicorn
+sudo systemctl start metlife-api.service
 
-echo "Gunicorn has started."
+echo "metlife-api.service has started."
 
-sudo systemctl enable gunicorn
+sudo systemctl status metlife-api.service
 
-echo "Gunicorn has been enabled."
-
-sudo systemctl status gunicorn
-
-sudo systemctl restart gunicorn
 
 
 
