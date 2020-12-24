@@ -100,7 +100,7 @@ pipeline {
 		publishHTML (target : [allowMissing: false,
  		alwaysLinkToLastBuild: true,
  		keepAll: true,
- 		reportDir: '/home/metlife-backend/deployments/metlife_poc',
+ 		reportDir: '/home/metlife-backend/deployments',
  		reportFiles: 'sast_out.html',
  		reportName: 'SAST Scan Report',
  		reportTitles: 'SAST Scan Report'])
