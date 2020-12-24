@@ -2,14 +2,14 @@ pipeline {
 	agent any
 	options { skipDefaultCheckout() }	
     	stages {
-        	stage("Checkout SCM") {
+          stage("Checkout SCM") {
 			steps {
 				cleanWs()
 				echo 'checkout scm'
 				checkout scm
 			}
 		}	
-			stage('Setup Python Virtual Environment'){
+	    stage('Setup Python Virtual Environment'){
 			
             steps {
                 sh '''
@@ -17,7 +17,8 @@ pipeline {
                     ./envsetup.sh
                     '''
             }
-			}
+	 }
+		stage('Unit Testing'){
 		parallel {
 			stage("Unit Test Backend") {
 			steps {
@@ -33,6 +34,7 @@ pipeline {
 				
 			}
 			}
+		}
 		}
 		
 		stage('SAST scan') {
