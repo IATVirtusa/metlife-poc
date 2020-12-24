@@ -41,7 +41,7 @@ pipeline {
 			steps {
 				echo 'SAST scan Stage'
 				sh '''
-                    			chmod +x envsetup.sh
+                    			chmod +x bandit-env.sh
                     			./bandit-env.sh
                     			'''
 				sh 'bandit -r ./'
