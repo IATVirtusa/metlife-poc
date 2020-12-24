@@ -71,11 +71,13 @@ pipeline {
 	stage('Deployment') {
 		
             steps {
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 sh '''
                     chmod +x deplyment.sh
                     ./deployment.sh
                     '''         
-            }
+           	 }
+	    }
         
 		}
 
