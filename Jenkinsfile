@@ -56,7 +56,7 @@ pipeline {
 			parallel {
 				stage('Backend Quality'){
 					steps {
-					dir("/home/lduser/deployments/deployments/metlife_poc"){
+					dir("/home/metlife-backend/deployments/metlife_poc"){
 					catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
 					sh "ls"
 					sh "pwd"
@@ -83,7 +83,16 @@ pipeline {
 		}
 	
 	stage('Deployment') {
-		
+		script{
+			props = readProperties file: '/home/metlife-backend/deployments/jenkins.properties'
+			env.DEBUG=props.DEBUG
+            		env.DB_NAME=prrops.DB_NAME
+            		env.DB_USER=props.DB_USER
+            		env.DB_PASSWORD=props.DB_PASSWORD
+            		env.DB_PORT=props.DB_PORT
+            		env.DB_HOST=props.DB_HOST
+            		env.LOG_DIR=props.LOG_DIR
+		}
             steps {
 		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 sh '''
