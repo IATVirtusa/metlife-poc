@@ -52,7 +52,7 @@ pipeline {
 			}
 		}
 	
-	stage('Deploy to Tomcat') {
+	stage('Deployment') {
 		
             steps {
                 sh '''
