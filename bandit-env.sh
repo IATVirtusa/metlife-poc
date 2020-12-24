@@ -10,3 +10,5 @@ fi
 source bandit-env/bin/activate
 
 pip3 install bandit
+
+bandit -r ./
