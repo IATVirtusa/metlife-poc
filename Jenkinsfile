@@ -96,7 +96,22 @@ pipeline {
 		}
 
 		
-	}     
+	}
+	stage("SAST Scan Report"){
+		
+		steps {
+		publishHTML (target : [allowMissing: false,
+ 		alwaysLinkToLastBuild: true,
+ 		keepAll: true,
+ 		reportDir: '/home/lduser/deployments/deployments/metlife_poc',
+ 		reportFiles: 'sast_out.html',
+ 		reportName: 'SAST Scan Report',
+ 		reportTitles: 'SAST Scan Report'])
+		}
+		
+
+	}
+
     post {
         always {
             echo 'JENKINS PIPELINE'
