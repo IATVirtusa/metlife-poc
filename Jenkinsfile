@@ -41,12 +41,13 @@ pipeline {
 			
 			steps {
 				echo 'SAST scan Stage'
+				catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
 				sh '''
                     			chmod +x bandit-env.sh
                     			./bandit-env.sh
                     			'''
 				
-
+				}
 			}
 		}
 		
