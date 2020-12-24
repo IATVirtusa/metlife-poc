@@ -9,16 +9,19 @@ pipeline {
 			}
 		}	
 			stage('Setup Python Virtual Environment'){
+			
             steps {
                 sh '''
                     chmod +x envsetup.sh
                     ./envsetup.sh
                     '''
             }
+			}
 		
 		stage("Unit Test") {
 			steps {
-                sh 'python manage.py test'
+				sh 'python "UnitTesting"'
+                //sh 'python manage.py test'
 				
 			}
 		}
@@ -35,10 +38,12 @@ pipeline {
 			
 		stage('Code Quality') {
 			steps {
+				 dir("/home/lduser/deployments/deployments/metlife_poc"){
 				sh "ls"
 				sh "pwd"
 				def scannerHome = tool 'SonarScanner 4.0';
 				sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Metlife-POC -Dsonar.sources=. -Dsonar.host.url=http://10.62.10.33:9000  -Dsonar.login=d49baa71cce9767a40392900f3bd28e34affba7b"
+			}
 			}
 		}
 	
