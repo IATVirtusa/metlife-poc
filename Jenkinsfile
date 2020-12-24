@@ -87,7 +87,7 @@ pipeline {
             steps {
 		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 sh '''
-                    chmod +x deplyment.sh
+                    chmod +x deployment.sh
                     ./deployment.sh
                     '''         
            	 }
