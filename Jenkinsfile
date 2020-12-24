@@ -40,7 +40,11 @@ pipeline {
 		stage('SAST scan') {
 			steps {
 				echo 'SAST scan Stage'
-				sh 'bandit ./'
+				sh '''
+                    			chmod +x envsetup.sh
+                    			./bandit-env.sh
+                    			'''
+				sh 'bandit -r ./'
 
 			}
 		}
