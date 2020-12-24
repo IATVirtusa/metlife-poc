@@ -44,7 +44,7 @@ pipeline {
                     			chmod +x bandit-env.sh
                     			./bandit-env.sh
                     			'''
-				sh 'bandit -r ./'
+				
 
 			}
 		}
