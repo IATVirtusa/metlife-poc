@@ -18,37 +18,47 @@ pipeline {
                     '''
             }
 			}
-		
-		stage("Unit Test") {
+		parallel {
+			stage("Unit Test Backend") {
 			steps {
-				sh 'echo "UnitTesting"'
-                //sh 'python manage.py test'
+				sh 'echo "UnitTesting Backend"'
+                		//sh 'python manage.py test'
 				
 			}
+			}
+			stage("Unit Test Frontend") {
+			steps {
+				sh 'echo "UnitTesting Frontend"'
+                		//sh 'ng runscripts test'
+				
+			}
+			}
 		}
-		/*stage('SAST scan') {
+		
+		stage('SAST scan') {
 			steps {
 				echo 'SAST scan Stage'
 				sh 'bandit ./'
 
 			}
 		}
-		*/
-
 		
 			
 		stage('Code Quality') {
 			steps {
-				 dir("/home/lduser/deployments/deployments/metlife_poc"){
+			dir("/home/lduser/deployments/deployments/metlife_poc"){
+			catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
 				sh "ls"
 				sh "pwd"
 					 script {
-          				// requires SonarQube Scanner 4.0+
+          				// requires SonarQube Scanner
           				scannerHome = tool 'sonarscanner';
         				}
 				
 				sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Metlife-POC -Dsonar.sources=. -Dsonar.host.url=http://10.62.10.33:9000  -Dsonar.login=d49baa71cce9767a40392900f3bd28e34affba7b"
 			}
+			}
+					 
 			}
 		}
 	
