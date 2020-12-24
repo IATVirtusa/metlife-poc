@@ -42,7 +42,11 @@ pipeline {
 				 dir("/home/lduser/deployments/deployments/metlife_poc"){
 				sh "ls"
 				sh "pwd"
-				def scannerHome = tool 'SonarScanner 4.0';
+					 script {
+          				// requires SonarQube Scanner 4.0+
+          				scannerHome = tool 'SonarScanner 4.0';
+        				}
+				
 				sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Metlife-POC -Dsonar.sources=. -Dsonar.host.url=http://10.62.10.33:9000  -Dsonar.login=d49baa71cce9767a40392900f3bd28e34affba7b"
 			}
 			}
