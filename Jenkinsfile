@@ -38,6 +38,7 @@ pipeline {
 		}
 		
 		stage('SAST scan') {
+			
 			steps {
 				echo 'SAST scan Stage'
 				sh '''
@@ -51,21 +52,33 @@ pipeline {
 		
 			
 		stage('Code Quality') {
-			steps {
-			dir("/home/lduser/deployments/deployments/metlife_poc"){
-			catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-				sh "ls"
-				sh "pwd"
+			parallel {
+				stage('Backend Quality'){
+					steps {
+					dir("/home/lduser/deployments/deployments/metlife_poc"){
+					catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+					sh "ls"
+					sh "pwd"
 					 script {
           				// requires SonarQube Scanner
           				scannerHome = tool 'sonarscanner';
         				}
 				
 				sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Metlife-POC -Dsonar.sources=. -Dsonar.host.url=http://10.62.10.33:9000  -Dsonar.login=d49baa71cce9767a40392900f3bd28e34affba7b"
-			}
-			}
+				}
+				}
 					 
+				}
+					
+				}
+				stage('UI Quality'){
+					steps{
+					sh 'echo "UI Quality"'
+					//script to execute UI Quality
+					}
+				}
 			}
+			
 		}
 	
 	stage('Deployment') {
