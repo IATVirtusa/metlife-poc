@@ -5,11 +5,9 @@ cd /home/metlife-backend/deployments
 
 source metlife-env/bin/activate
 cd metlife_poc 
-echo $DB_PORT
 
 sudo systemctl stop metlife-api.service
 
-sudo systemctl start metlife-api.service
 
 
 
