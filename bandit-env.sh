@@ -11,4 +11,4 @@ source bandit-env/bin/activate
 
 pip3 install bandit
 
-bandit -f html -o /home/lduser/deployments/deployments/metlife_poc/sast_out.html -r /home/lduser/deployments/deployments/metlife_poc/
+bandit -f html -o /home/lduser/deployments/deployments/metlife_poc/sast_out.html -r /home/lduser/deployments/deployments/metlife_poc/*.py
