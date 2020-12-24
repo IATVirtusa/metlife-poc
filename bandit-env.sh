@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd  /home/metlife-backend/deployments/metlife_poc
+cd  /home/metlife-backend/deployments/
 
 if [ -d "bandit-env" ] 
 then
