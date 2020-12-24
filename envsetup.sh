@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ -d "env" ] 
+if [ -d "metlife-env" ] 
 then
     echo "Python virtual environment exists." 
 else
-    python3 -m venv env
+    python3 -m venv metlife-env
 fi
 
-source env/bin/activate
+source metlife-env/bin/activate
 
 pip3 install bandit
 pip3 install -r requirements.txt
