@@ -94,10 +94,7 @@ pipeline {
 	    }
         
 		}
-
-		
-	}
-	stage("SAST Scan Report"){
+		stage("SAST Scan Report"){
 		
 		steps {
 		publishHTML (target : [allowMissing: false,
@@ -111,6 +108,10 @@ pipeline {
 		
 
 	}
+
+		
+	}
+	
 
     post {
         always {
