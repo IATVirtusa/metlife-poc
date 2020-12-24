@@ -83,7 +83,9 @@ pipeline {
 		}
 	
 	stage('Deployment') {
-		script{
+		
+            steps {
+		    script{
 			props = readProperties file: '/home/metlife-backend/deployments/jenkins.properties'
 			env.DEBUG=props.DEBUG
             		env.DB_NAME=prrops.DB_NAME
@@ -93,7 +95,6 @@ pipeline {
             		env.DB_HOST=props.DB_HOST
             		env.LOG_DIR=props.LOG_DIR
 		}
-            steps {
 		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                 sh '''
                     chmod +x deployment.sh
