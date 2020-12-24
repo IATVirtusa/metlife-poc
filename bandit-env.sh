@@ -11,4 +11,4 @@ source bandit-env/bin/activate
 
 pip3 install bandit
 
-bandit -r ./
+bandit -r /home/lduser/deployments/deployments/metlife_poc/
